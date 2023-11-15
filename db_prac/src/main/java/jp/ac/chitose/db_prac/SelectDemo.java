@@ -10,7 +10,7 @@ public class SelectDemo {
         Scanner scan = new Scanner(System.in);
         int lessThan =Integer.parseInt(scan.nextLine());
         try{
-            PreExaDAO dao =new PreExaDAO();
+            PreExamDAO dao =new PreExamDAO();
             List<PreExam> preExams =dao.selectPreExams(lessThan);
             for(PreExam preExam :preExams){
                 preExam.print();

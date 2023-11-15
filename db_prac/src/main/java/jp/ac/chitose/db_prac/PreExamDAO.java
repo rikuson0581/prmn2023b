@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreExaDAO {
+public class PreExamDAO {
     public static final String URL = "jdbc:h2:~/h2db/db_prac;Mode=PostgreSQL;AUTO_SERVER=TRUE;;Mode=PostgreSQL;AUTO_SERVER=TRUE;";
     public static final String USER_NAME = "b2221790";
     public static final String USER_PASS = "b2221790";
@@ -26,6 +26,17 @@ public class PreExaDAO {
                 returning.add(preExam);
             }
         }
-    return returning;
+        return returning;
+    }
+    public int delitePreExam(String gakusekiCode)throws SQLException{
+        String sql ="delete from 学生情報 WHERE 学生コード =?";
+        int n = 0;
+        try(Connection conn = DriverManager.getConnection(URL,USER_NAME,USER_PASS);
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1,gakusekiCode);
+            n =stmt.executeUpdate();
+        }
+        return n;
+
     }
 }
