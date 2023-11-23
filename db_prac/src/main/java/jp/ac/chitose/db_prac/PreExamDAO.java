@@ -39,4 +39,17 @@ public class PreExamDAO {
         return n;
 
     }
+    public int insertPreExam(String gakusekiCode, String familiyName, String firstName, int point)throws SQLException{
+        String sql = "insert into 学生情報 values(?,?,?,?)";
+        int n =0;
+        try(Connection conn = DriverManager.getConnection(URL,USER_NAME,USER_PASS);
+            PreparedStatement stmt =conn.prepareStatement(sql)){
+            stmt.setString(1,gakusekiCode);
+            stmt.setString(2,familiyName);
+            stmt.setString(3,firstName);
+            stmt.setInt(4,point);
+            n=stmt.executeUpdate();
+        }
+        return n;
+    }
 }
